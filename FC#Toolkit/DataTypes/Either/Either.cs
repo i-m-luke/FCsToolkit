@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCS.DataTypes.Either
+namespace FCsToolkit.DataTypes.Either
 {
     /// <summary>
     /// Either monad.
     /// </summary>
     /// <typeparam name="TLeft">Failure type</typeparam>
     /// <typeparam name="TRight">Success type</typeparam>
-    internal class Either<TLeft,TRight>
+    public class Either<TLeft,TRight>
     {
         protected Either(TLeft left) 
         {
@@ -35,12 +35,12 @@ namespace FCS.DataTypes.Either
         public static Right<TLeft, TRight> FromRight(TRight right) => new(right);
     }
 
-    internal sealed class Left<TLeft, TRight>(TLeft value) : Either<TLeft, TRight>(value)
+    public sealed class Left<TLeft, TRight>(TLeft value) : Either<TLeft, TRight>(value)
     {
         public TLeft Value => HiddenLeft!;
     }
 
-    internal sealed class Right<TLeft, TRight>(TRight value) : Either<TLeft, TRight>(value)
+    public sealed class Right<TLeft, TRight>(TRight value) : Either<TLeft, TRight>(value)
     {
         public TRight Value => HiddenRight!;
     }

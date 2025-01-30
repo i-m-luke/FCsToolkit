@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCS.DataTypes.Option;
+namespace FCsToolkit.DataTypes.Option;
 
-internal abstract class Option<TIn>(TIn? value)
+public abstract class Option<TIn>(TIn? value)
 {
     protected TIn? HiddenValue { get; } = value;
 
@@ -15,9 +15,9 @@ internal abstract class Option<TIn>(TIn? value)
     public static None<TIn> None() => new();
 }
 
-internal class Some<T>(T value) : Option<T>(value)
+public class Some<T>(T value) : Option<T>(value)
 {
     public T Value => HiddenValue!;
 }
 
-internal class None<T>() : Option<T>(default);
+public class None<T>() : Option<T>(default);
