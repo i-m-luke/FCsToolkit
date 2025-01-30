@@ -17,6 +17,7 @@ internal class ContextUsageTests
         var result = new CtxData(10)
             .InitContext(data => data.X * 2)
             .Next((data, input) => data.X + input)
+            .Next((data, input) => data.X / input)
             .Final((data, input) => data.X - input);
     }
 }
