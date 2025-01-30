@@ -21,7 +21,7 @@ public readonly struct Context<TCtxData, TIn>(TCtxData data, TIn input)
     public delegate TOut InitFn<out TOut>(TCtxData ctxData);
 
     /// <summary>
-    /// A delefage for context executed functions.
+    /// A delegate for context executed functions.
     /// </summary>
     /// <typeparam name="TOut"></typeparam>
     /// <param name="ctxData"></param>
