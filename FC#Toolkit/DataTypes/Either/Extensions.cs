@@ -28,7 +28,7 @@ public static class Extensions
         };
 
     /// <summary>
-    /// IMPURE: Heper extension method for resolving <see cref="Either{TLeft, TRight}"/> datatype without returning a value.
+    /// IMPURE: Helper extension method for resolving <see cref="Either{TLeft, TRight}"/> datatype without returning a value.
     /// </summary>
     /// <typeparam name="TLeft">Type of left.</typeparam>
     /// <typeparam name="TRight">Type of right.</typeparam>

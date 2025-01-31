@@ -27,7 +27,7 @@ public static class Extensions
         };
 
     /// <summary>
-    /// IMPURE: Heper extension method for resolving <see cref="Option{TIn}"/> datatype without returning a value.
+    /// IMPURE: Helper extension method for resolving <see cref="Option{TIn}"/> datatype without returning a value.
     /// </summary>
     /// <typeparam name="T">Type of processed value.</typeparam>
     /// <param name="option">Resolved either.</param>
