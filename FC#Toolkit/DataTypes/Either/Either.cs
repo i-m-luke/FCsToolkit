@@ -11,9 +11,9 @@ namespace FCsToolkit.DataTypes.Either
     /// </summary>
     /// <typeparam name="TLeft">Failure type</typeparam>
     /// <typeparam name="TRight">Success type</typeparam>
-    public class Either<TLeft,TRight>
+    public class Either<TLeft, TRight>
     {
-        protected Either(TLeft left) 
+        protected Either(TLeft left)
         {
             HiddenLeft = left;
             IsRight = false;
