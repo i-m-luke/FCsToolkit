@@ -34,12 +34,15 @@ internal class BasicUsageTests
             some => Debug.WriteLine("Some: " + some), // OUT: Some: 10
             () => Debug.WriteLine("None"));
 
+        // Or we can use this:
+        // static Option<object> OptFn02(object? obj) => Option<object?>.NotNull(obj);
         static Option<object> OptFn02(object? obj)
             => obj switch
             {
                 not null => Option<object>.Some(obj),
                 _ => Option<object>.None()
             };
+
 
         var result = (null as object)
             .PipeO(OptFn02)
@@ -107,6 +110,8 @@ internal class BasicUsageTests
     public static Func<int, string> ComposeCalculateThenConvertToStringFn()
     {
         var baseFn = (int x) => x + 10;
-        return baseFn.Compose(MultiplyByTwo).Compose(ConvertToString);
+        return baseFn
+            .Compose(MultiplyByTwo)
+            .Compose(ConvertToString);
     }
 }
