@@ -1,3 +1,4 @@
+- Solve StyleCop warnings
 - Add basic samples to readme
 - Extend examples
 - Cover with unit tests!

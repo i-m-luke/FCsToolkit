@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FCsToolkit.DataTypes.Option;
+﻿namespace FCsToolkit.DataTypes.Option;
 
 public abstract class Option<TIn>(TIn? value)
 {

@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace FCsToolkit.DataTypes.Option;
-
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace FCsToolkit.DataTypes.Option;
 
 public static class Extensions
 {
@@ -33,7 +26,6 @@ public static class Extensions
     /// <param name="option">Resolved either.</param>
     /// <param name="isSome">Function for some processing.</param>
     /// <param name="isNone">Function for none processing.</param>
-    /// <returns>The output result.</returns>
     /// <exception cref="NotSupportedException"></exception>
     public static void MatchEffect<T>(this Option<T> option, Action<T> isSome, Action isNone)
     {

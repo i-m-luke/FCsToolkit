@@ -12,10 +12,10 @@
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\Key.snk</AssemblyOriginatorKeyFile>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-		<VersionPrefix>1.0.7</VersionPrefix>
-		<VersionSuffix>alpha</VersionSuffix>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<Description>Toolkit for extending C# with functional capabilites.</Description>
+		<VersionPrefix>1.0.7</VersionPrefix>
+		<VersionSuffix>alpha</VersionSuffix>
 		<RepositoryUrl>https://github.com/i-m-luke/FCsToolkit.git</RepositoryUrl>
   </PropertyGroup>
 
@@ -26,5 +26,12 @@
     <None Include="..\LICENSE.txt" Pack="true" PackagePath="\">
       <Link>LICENSE.txt</Link>
     </None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+	    <PrivateAssets>all</PrivateAssets>
+	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>
 	</ItemGroup>
 </Project>

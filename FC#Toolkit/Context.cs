@@ -30,12 +30,12 @@ public readonly struct Context<TContextData, TIn>(TContextData data, TIn input)
     public delegate TOut ContextFn<out TOut>(TContextData ctxData, TIn @in);
 
     /// <summary>
-    /// The context data.
+    /// Gets the context data.
     /// </summary>
     private TContextData Data { get; } = data;
 
     /// <summary>
-    /// Next function call input.
+    /// Gets an input for the next function call.
     /// </summary>
     private TIn Input { get; } = input;
 
