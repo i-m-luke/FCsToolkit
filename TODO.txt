@@ -1,0 +1,2 @@
+- Add basic samples to readme
+- Cover with unit tests!

@@ -13,19 +13,10 @@ namespace FCsToolkit.DataTypes.Either
     /// <typeparam name="TRight">Success type</typeparam>
     public class Either<TLeft, TRight>
     {
-        protected Either(TLeft left)
-        {
-            HiddenLeft = left;
-            IsRight = false;
-        }
+        protected Either(TLeft left) => HiddenLeft = left;
 
-        protected Either(TRight right)
-        {
-            HiddenRight = right;
-            IsRight = true;
-        }
 
-        public bool IsRight { get; }
+        protected Either(TRight right) => HiddenRight = right;
 
         protected TLeft? HiddenLeft { get; }
         protected TRight? HiddenRight { get; }
