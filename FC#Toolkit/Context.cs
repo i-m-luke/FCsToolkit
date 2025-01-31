@@ -5,12 +5,12 @@ using FCsToolkit.DataTypes;
 /// <summary>
 /// Struct for processing functions in a given context
 /// </summary>
-/// <typeparam name="TCtxData">Type of context data.</typeparam>
+/// <typeparam name="TContextData">Type of context data.</typeparam>
 /// <typeparam name="TIn">Type of input for context.</typeparam>
 /// <param name="data">Context data.</param>
 /// <param name="input">Input to the context.</param>
-public readonly struct Context<TCtxData, TIn>(TCtxData data, TIn input)
-    where TCtxData : struct
+public readonly struct Context<TContextData, TIn>(TContextData data, TIn input)
+    where TContextData : struct
 {
     /// <summary>
     /// A delegate for executing initial context funciton.
@@ -18,35 +18,41 @@ public readonly struct Context<TCtxData, TIn>(TCtxData data, TIn input)
     /// <typeparam name="TOut">Function output type</typeparam>
     /// <param name="ctxData">Context data</param>
     /// <returns></returns>
-    public delegate TOut InitFn<out TOut>(TCtxData ctxData);
+    public delegate TOut InitFn<out TOut>(TContextData ctxData);
 
     /// <summary>
     /// A delefage for context executed functions.
     /// </summary>
-    /// <typeparam name="TOut"></typeparam>
-    /// <param name="ctxData"></param>
-    /// <param name="in"></param>
+    /// <typeparam name="TOut">Function output type</typeparam>
+    /// <param name="ctxData">Context data</param>
+    /// <param name="in">Input value.</param>
     /// <returns></returns>
-    public delegate TOut CtxFn<out TOut>(TCtxData ctxData, TIn @in);
+    public delegate TOut ContextFn<out TOut>(TContextData ctxData, TIn @in);
 
-    private TCtxData Data { get; } = data;
+    /// <summary>
+    /// The context data.
+    /// </summary>
+    private TContextData Data { get; } = data;
 
+    /// <summary>
+    /// Next function call input.
+    /// </summary>
     private TIn Input { get; } = input;
 
     /// <summary>
-    /// Execute function in a context
+    /// Executes function in a context enabling function chaning in the context.
     /// </summary>
-    /// <typeparam name="TOut"></typeparam>
-    /// <param name="fn"></param>
+    /// <typeparam name="TOut">Type of output result.</typeparam>
+    /// <param name="fn">Function for input transformation.</param>
     /// <returns></returns>
-    public Context<TCtxData, TOut> Next<TOut>(CtxFn<TOut> fn)
+    public Context<TContextData, TOut> Next<TOut>(ContextFn<TOut> fn)
         => new(Data, fn(Data, Input));
 
     /// <summary>
-    /// Execute final function in a context returning a final result.
+    /// Executes final function in a context returning a final result.
     /// </summary>
-    /// <typeparam name="TOut"></typeparam>
-    /// <param name="fn"></param>
+    /// <typeparam name="TOut">Type of output result.</typeparam>
+    /// <param name="fn">Function for input transformation.</param>
     /// <returns></returns>
-    public TOut Final<TOut>(CtxFn<TOut> fn) => fn(Data, Input);
+    public TOut Final<TOut>(ContextFn<TOut> fn) => fn(Data, Input);
 }

@@ -7,7 +7,7 @@ using FCsToolkit.DataTypes.Option;
 public static class Extensions
 {
     /// <summary>
-    /// Pipe function.
+    /// Basic pipe function used for function chaning.
     /// </summary>
     /// <typeparam name="TIn">Type of processed input.</typeparam>
     /// <typeparam name="TOut">Type of result.</typeparam>
@@ -20,28 +20,28 @@ public static class Extensions
         => func(input);
 
     /// <summary>
-    /// Pipe operation resulting in option monad.
+    /// Pipe operation resulting in <see cref="Option{TIn}"/> monad.
     /// </summary>
-    /// <typeparam name="TIn"></typeparam>
-    /// <typeparam name="TOut"></typeparam>
-    /// <param name="input"></param>
-    /// <param name="func"></param>
-    /// <returns></returns>
+    /// <typeparam name="TIn">Type of the input value.</typeparam>
+    /// <typeparam name="TOut">Type of the output result</typeparam>
+    /// <param name="input">The input.</param>
+    /// <param name="func">Function for input transformation.</param>
+    /// <returns>Result of <see cref="Option{TOut}"/> datatype</returns>
     public static Option<TOut> PipeO<TIn, TOut>(this TIn input, Func<TIn, Option<TOut>> func) => func(input);
 
     /// <summary>
-    /// Pipe operation resulting in either monad.
+    /// Pipe operation resulting in <see cref="Either{TLeft, TRight}"/>  monad.
     /// </summary>
-    /// <typeparam name="TIn"></typeparam>
-    /// <typeparam name="TLeft"></typeparam>
-    /// <typeparam name="TRight"></typeparam>
-    /// <param name="input"></param>
-    /// <param name="func"></param>
-    /// <returns></returns>
+    /// <typeparam name="TIn">Type of the input value.</typeparam>
+    /// <typeparam name="TLeft">Type of either left.</typeparam>
+    /// <typeparam name="TRight">Type of either right.</typeparam>
+    /// <param name="input">The input.</param>
+    /// <param name="func">Function for input transformation.</param>
+    /// <returns>Result of <see cref="Either{TLeft, TRight}"/> datatype</returns>
     public static Either<TLeft, TRight> PipeE<TIn, TLeft, TRight>(this TIn input, Func<TIn, Either<TLeft, TRight>> func) => func(input);
 
     /// <summary>
-    /// Execute function in try block resulting in either datatype.
+    /// Executes a function in wrapped by try block resulting in <see cref="Either{TLeft, TRight}"/> monad.
     /// </summary>
     /// <typeparam name="TIn">Input type.</typeparam>
     /// <typeparam name="TOut">Output type.</typeparam>
