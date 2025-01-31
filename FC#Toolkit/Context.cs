@@ -1,7 +1,5 @@
 ﻿namespace FCsToolkit;
 
-using FCsToolkit.DataTypes;
-
 /// <summary>
 /// Struct for processing functions in a given context
 /// </summary>
