@@ -1,13 +1,12 @@
-using NUnit.Framework;
-
-using FCsToolkit;
-using FCsToolkit.DataTypes;
-using FCsToolkit.DataTypes.Option;
-using FCsToolkit.DataTypes.Either;
+namespace FCsToolkitTests;
 
 using System;
 
-namespace FCsToolkitTests;
+using NUnit.Framework;
+
+using FCsToolkit;
+using FCsToolkit.DataTypes.Either;
+using FCsToolkit.DataTypes.Option;
 
 public class ExtensionsTests
 {
@@ -30,7 +29,8 @@ public class ExtensionsTests
     public void PipeO_WhenInputIsValid_ThenReturnsSomeWithValue()
     {
         // Arrange
-        static Option<string> ConvertToOptionString(int x) => Option<string>.Some(x.ToString());
+        static Option<string> ConvertToOptionString(int x)
+            => Option<string>.Some(x.ToString());
 
         const int input = 42;
 
@@ -53,8 +53,10 @@ public class ExtensionsTests
     public void PipeO_WhenInputIsInvalid_ThenReturnsNone()
     {
         // Arrange
-        static Option<string> ConvertToOptionString(int x) =>
-            x >= 0 ? Option<string>.Some(x.ToString()) : Option<string>.None();
+        static Option<string> ConvertToOptionString(int x)
+            => x >= 0
+                ? Option<string>.Some(x.ToString())
+                : Option<string>.None();
 
         const int input = -1;
 
@@ -69,10 +71,12 @@ public class ExtensionsTests
     public void PipeE_WhenInputIsPositive_ThenReturnsRightWithDoubledValue()
     {
         // Arrange
+        const string whenLeftText = "Left";
+
         static Either<string, int> DoubleIfPositive(int x)
             => x > 0
                 ? Either<string, int>.FromRight(x * 2)
-                : Either<string, int>.FromLeft("Number must be positive");
+                : Either<string, int>.FromLeft(whenLeftText);
 
         const int input = 10;
 
@@ -94,10 +98,12 @@ public class ExtensionsTests
     public void PipeE_WhenInputIsNegative_ThenReturnsLeftWithErrorMessage()
     {
         // Arrange
+        const string whenLeftText = "Left";
+
         static Either<string, int> DoubleIfPositive(int x) =>
             x > 0
                 ? Either<string, int>.FromRight(x * 2)
-                : Either<string, int>.FromLeft("Number must be positive");
+                : Either<string, int>.FromLeft(whenLeftText);
 
         const int input = -5;
 
@@ -112,7 +118,7 @@ public class ExtensionsTests
                 result.Match(
                     isRight: _ => string.Empty,
                     isLeft: error => error),
-                Is.EqualTo("Number must be positive"));
+                Is.EqualTo(whenLeftText));
         }
     }
 
@@ -145,6 +151,7 @@ public class ExtensionsTests
         // Arrange
         static int Divide100(int x) => 100 / x;
 
+        const string whenLeftText = "Left";
         const int input = 0;
 
         // Act
@@ -157,8 +164,8 @@ public class ExtensionsTests
             Assert.That(
                 result.Match(
                     isRight: x => x.ToString(),
-                    isLeft: ex => "Failure:" + ex),
-                Does.Contain("Failure"));
+                    isLeft: ex => whenLeftText),
+                Is.EqualTo(whenLeftText));
         }
     }
 
